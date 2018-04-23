@@ -24,7 +24,7 @@ public class NullnessAnalysis
             NullnessAnnotatedTypeFactory factory,
             List<Pair<VariableElement, NullnessValue>> fieldValues) {
         super(checker, factory, fieldValues);
-        NULLNESS_LITE_OPTION = (checker.hasOption("NullnessLite")) ? true : false;
+        NULLNESS_LITE_OPTION = checker.hasOption("NullnessLite");
     }
 
     @Override
