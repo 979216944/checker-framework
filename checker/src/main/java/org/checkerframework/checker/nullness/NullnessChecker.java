@@ -17,6 +17,7 @@ public class NullnessChecker extends AbstractNullnessChecker {
      * option. 2. [Invalidation of Dataflow] impure methods disallowed as command-line option. 3.
      * [Invalidation of Dataflow] aliasing disallowed, see method canAlias in NullnessStore.java
      */
+    @Override
     public void initChecker() {
         super.initChecker();
 
