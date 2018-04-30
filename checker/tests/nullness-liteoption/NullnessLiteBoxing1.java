@@ -1,5 +1,4 @@
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.dataflow.qual.Pure;
 
 /**
@@ -100,5 +99,4 @@ public class NullnessLiteBoxing1 {
     @Nullable Object obj(boolean b) {
         return null;
     }
-
 }

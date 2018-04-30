@@ -1,8 +1,7 @@
-import org.checkerframework.checker.nullness.qual.Nullable;
-import org.checkerframework.checker.nullness.qual.KeyFor;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
+import org.checkerframework.checker.nullness.qual.KeyFor;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
  * This class illustrates use of keyfor type annotations. Since the Nullness Checker has no dataflow
