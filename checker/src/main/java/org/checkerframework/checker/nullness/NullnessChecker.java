@@ -30,7 +30,7 @@ public class NullnessChecker extends AbstractNullnessChecker {
             nullness_lite.put("suppressWarnings", "uninitialized"); // for 1
             nullness_lite.put("assumeSideEffectFree", null); // for 2
             nullness_lite.put("stubs", NULLNESS_LITE_STUB); // for 5
-            //            nullness_lite.put("suppressWarnings", "keyfor");
+            //nullness_lite.put("suppressWarnings", "keyfor");
 
             this.addOptions(nullness_lite);
         }
