@@ -22,6 +22,7 @@ public class NullnessChecker extends AbstractNullnessChecker {
      * returns nonnull. 5. [Boxing of primitives] all BoxedClass.valueOf(primitiveType) are pure,
      * returned Object are equal by ==.
      */
+    @Override
     public void initChecker() {
 
         if (this.hasOption("NullnessLite")) {
