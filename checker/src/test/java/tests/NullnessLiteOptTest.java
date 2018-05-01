@@ -2,6 +2,7 @@ package tests;
 
 import java.io.File;
 import java.util.List;
+import org.checkerframework.checker.nullness.*;
 import org.checkerframework.framework.test.CheckerFrameworkPerDirectoryTest;
 import org.junit.runners.Parameterized.Parameters;
 
@@ -15,6 +16,7 @@ public class NullnessLiteOptTest extends CheckerFrameworkPerDirectoryTest {
                 org.checkerframework.checker.nullness.NullnessChecker.class,
                 "nullness",
                 "-Anomsgtext",
+                "-AstubWarnIfNotFound",
                 "-ANullnessLite");
     }
 
