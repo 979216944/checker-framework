@@ -1,3 +1,4 @@
+import java.util.Map;
 import org.checkerframework.checker.nullness.qual.Nullable;
 import org.checkerframework.dataflow.qual.Pure;
 
@@ -11,6 +12,13 @@ import org.checkerframework.dataflow.qual.Pure;
 public class NullnessLiteBoxing1 {
 
     public static void main(String[] args) {}
+
+    // Map key analysis could work with boxing assumptions
+    public void testMapKeyChecker(double key, Map<Double, Object> m) {
+        if (m.get(Double.valueOf(key)) != null) {
+            m.get(Double.valueOf(key)).toString(); // NullnessLite ON = no error
+        }
+    }
 
     void testIntegerWithPure(int x) {
         if (obj(Integer.valueOf(x)) != null) {
