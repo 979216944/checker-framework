@@ -15,6 +15,7 @@ public class NullnessLiteOptTest extends CheckerFrameworkPerDirectoryTest {
                 org.checkerframework.checker.nullness.NullnessChecker.class,
                 "nullness",
                 "-Anomsgtext",
+                "-AstubWarnIfNotFound",
                 "-ANullnessLite");
     }
 
