@@ -16,6 +16,7 @@ import org.checkerframework.javacutil.Pair;
  */
 public class NullnessAnalysis
         extends CFAbstractAnalysis<NullnessValue, NullnessStore, NullnessTransfer> {
+
     // Nullness_Lite_Option inidicates whether nullness_lite is enabled
     protected boolean NULLNESS_LITE_OPTION;
 
@@ -25,6 +26,7 @@ public class NullnessAnalysis
             List<Pair<VariableElement, NullnessValue>> fieldValues) {
         super(checker, factory, fieldValues);
         NULLNESS_LITE_OPTION = checker.hasOption("NullnessLite");
+        this.transferFunction = createTransferFunction();
     }
 
     @Override
