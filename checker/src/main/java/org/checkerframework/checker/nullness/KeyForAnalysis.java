@@ -12,6 +12,8 @@ import org.checkerframework.javacutil.Pair;
 
 /** Boiler plate code to glue together all the parts the KeyFor dataflow classes. */
 public class KeyForAnalysis extends CFAbstractAnalysis<KeyForValue, KeyForStore, KeyForTransfer> {
+    // Nullness_Lite_Option inidicates whether nullness_lite is enabled
+    protected boolean NULLNESS_LITE_OPTION;
 
     public KeyForAnalysis(
             BaseTypeChecker checker,
@@ -19,6 +21,7 @@ public class KeyForAnalysis extends CFAbstractAnalysis<KeyForValue, KeyForStore,
             List<Pair<VariableElement, KeyForValue>> fieldValues,
             int maxCountBeforeWidening) {
         super(checker, factory, fieldValues, maxCountBeforeWidening);
+        NULLNESS_LITE_OPTION = checker.hasOption("NullnessLite");
     }
 
     public KeyForAnalysis(
@@ -26,6 +29,7 @@ public class KeyForAnalysis extends CFAbstractAnalysis<KeyForValue, KeyForStore,
             KeyForAnnotatedTypeFactory factory,
             List<Pair<VariableElement, KeyForValue>> fieldValues) {
         super(checker, factory, fieldValues);
+        NULLNESS_LITE_OPTION = checker.hasOption("NullnessLite");
     }
 
     @Override
