@@ -25,15 +25,26 @@ public class NullnessChecker extends AbstractNullnessChecker {
     @Override
     public void initChecker() {
 
+        Map<String, String> nullness_lite = new HashMap<String, String>();
         if (this.hasOption("NullnessLite")) {
-            Map<String, String> nullness_lite = new HashMap<String, String>();
-            nullness_lite.put("suppressWarnings", "uninitialized"); // for 1
-            nullness_lite.put("assumeSideEffectFree", null); // for 2
+            // for feature 1
+            String swKey = "suppressWarnings";
+            String swVal = this.getOption(swKey);
+            if (swVal != null) {
+                nullness_lite.put(swKey, "uninitialized," + swVal);
+            } else {
+                nullness_lite.put(swKey, "uninitialized");
+            }
+
+            nullness_lite.put("assumeSideEffectFree", null); // for feature 2
+
             //nullness_lite.put("stubs", NULLNESS_LITE_STUB); // for 5
             //nullness_lite.put("suppressWarnings", "keyfor");
-
-            this.addOptions(nullness_lite);
+        } else {
+            nullness_lite.put("ignorejdkastub", null);
+            // ignore jdk.astub for NullnessLite Option feature 5
         }
+        this.addOptions(nullness_lite);
 
         super.initChecker();
     }
