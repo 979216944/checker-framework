@@ -8,7 +8,7 @@ import javax.annotation.processing.SupportedOptions;
 @SupportedOptions({"NullnessLite"})
 public class NullnessChecker extends AbstractNullnessChecker {
 
-    private final String NULLNESS_LITE_STUB = "nullness_lite.astub";
+    //private final String NULLNESS_LITE_STUB = "nullness_lite.astub";
 
     public NullnessChecker() {
         super(true);
@@ -29,7 +29,7 @@ public class NullnessChecker extends AbstractNullnessChecker {
             Map<String, String> nullness_lite = new HashMap<String, String>();
             nullness_lite.put("suppressWarnings", "uninitialized"); // for 1
             nullness_lite.put("assumeSideEffectFree", null); // for 2
-            nullness_lite.put("stubs", NULLNESS_LITE_STUB); // for 5
+            //nullness_lite.put("stubs", NULLNESS_LITE_STUB); // for 5
             //nullness_lite.put("suppressWarnings", "keyfor");
 
             this.addOptions(nullness_lite);
