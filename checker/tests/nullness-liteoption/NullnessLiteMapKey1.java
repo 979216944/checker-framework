@@ -45,12 +45,7 @@ public class NullnessLiteMapKey1 {
         m.get(notin).toString(); // NullnessLite ON = no error
     }
 
-    void foo(Map<String, String> m, String in) {
-        m.put(in, in);
-        return;
-    }
-
-    void showFalseWarnings() {
+    void showFalseWarningsAndErrors() {
         Map<String, String> m = new HashMap<String, String>();
 
         @KeyFor("m") String notin = new @KeyFor("m") String("in");
@@ -60,6 +55,19 @@ public class NullnessLiteMapKey1 {
 
         m.get(notin).toString(); // error but no warning
         m.get(in).toString(); // Ok but a warning
+    }
+
+    void showFalseWarnings() {
+        Map<String, String> m = new HashMap<String, String>();
+        String in = "in";
+        foo(m, in);
+
+        m.get(in).toString(); // Ok but a warning
+    }
+
+    void foo(Map<String, String> m, String in) {
+        m.put(in, in);
+        return;
     }
 
     void wierdKeyFor() {
