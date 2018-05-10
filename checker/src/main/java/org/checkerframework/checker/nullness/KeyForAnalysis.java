@@ -12,8 +12,9 @@ import org.checkerframework.javacutil.Pair;
 
 /** Boiler plate code to glue together all the parts the KeyFor dataflow classes. */
 public class KeyForAnalysis extends CFAbstractAnalysis<KeyForValue, KeyForStore, KeyForTransfer> {
-    // Nullness_Lite_Option inidicates whether nullness_lite is enabled
-    protected boolean NULLNESS_LITE_OPTION;
+    // fields inidicates whether nullness_lite is enabled with the following features
+    protected boolean NO_ALIASING;
+    protected boolean ALL_KEY_EXIST;
 
     public KeyForAnalysis(
             BaseTypeChecker checker,
@@ -21,7 +22,7 @@ public class KeyForAnalysis extends CFAbstractAnalysis<KeyForValue, KeyForStore,
             List<Pair<VariableElement, KeyForValue>> fieldValues,
             int maxCountBeforeWidening) {
         super(checker, factory, fieldValues, maxCountBeforeWidening);
-        NULLNESS_LITE_OPTION = checker.hasOption("NullnessLite");
+        setNullnessLite();
     }
 
     public KeyForAnalysis(
@@ -29,7 +30,7 @@ public class KeyForAnalysis extends CFAbstractAnalysis<KeyForValue, KeyForStore,
             KeyForAnnotatedTypeFactory factory,
             List<Pair<VariableElement, KeyForValue>> fieldValues) {
         super(checker, factory, fieldValues);
-        NULLNESS_LITE_OPTION = checker.hasOption("NullnessLite");
+        setNullnessLite();
     }
 
     @Override
@@ -50,5 +51,20 @@ public class KeyForAnalysis extends CFAbstractAnalysis<KeyForValue, KeyForStore,
             return null;
         }
         return new KeyForValue(this, annotations, underlyingType);
+    }
+
+    private void setNullnessLite() {
+        NO_ALIASING =
+                checker.hasOption("NullnessLite")
+                        && (checker.getOption("NullnessLite") == null
+                                || checker.getOption("NullnessLite")
+                                        .toLowerCase()
+                                        .contains("inva"));
+        ALL_KEY_EXIST =
+                checker.hasOption("NullnessLite")
+                        && (checker.getOption("NullnessLite") == null
+                                || checker.getOption("NullnessLite")
+                                        .toLowerCase()
+                                        .contains("mapk"));
     }
 }

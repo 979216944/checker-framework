@@ -21,7 +21,7 @@ public class KeyForStore extends CFAbstractStore<KeyForValue, KeyForStore> {
      */
     @Override
     public boolean canAlias(FlowExpressions.Receiver a, FlowExpressions.Receiver b) {
-        if (((KeyForAnalysis) analysis).NULLNESS_LITE_OPTION) {
+        if (((KeyForAnalysis) analysis).NO_ALIASING) {
             return false;
         }
         return super.canAlias(a, b);
