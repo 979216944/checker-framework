@@ -21,7 +21,7 @@ public class NullnessLiteComRegTest extends CheckerFrameworkPerDirectoryTest {
                 "-AstubWarnIfNotFound",
                 "-ANullnessLite",
                 "-AsuppressWarnings=method.invocation.invalid",
-                "-Astubs=" + "tests/nullness-liteoption-comreg/issue5.astub");
+                "-Astubs=tests/nullness-liteoption-comreg/issue5.astub");
     }
 
     @Parameters

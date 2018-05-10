@@ -24,7 +24,6 @@ public class CommandLineShadowRegTest {
     public void m2() {
         @Nullable String[] a = null;
         Array.getLength(a);
-        Array.get(a, 0);
     }
 
     public void m3() {
