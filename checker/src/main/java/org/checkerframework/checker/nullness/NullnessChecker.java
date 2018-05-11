@@ -1,6 +1,5 @@
 package org.checkerframework.checker.nullness;
 
-
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.processing.SupportedOptions;
