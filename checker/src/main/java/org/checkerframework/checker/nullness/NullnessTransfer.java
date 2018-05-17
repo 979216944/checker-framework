@@ -234,7 +234,7 @@ public class NullnessTransfer
             String mapName =
                     FlowExpressions.internalReprOf(analysis.getTypeFactory(), receiver).toString();
 
-            // ALL_KEY_EXIST assumes that the result of map.get() return non-null.
+            // ALL_KEY_EXIST assumes that the result of map.get() returns non-null.
             if (keyForTypeFactory.isKeyForMap(mapName, methodArgs.get(0)) || ALL_KEY_EXIST) {
                 makeNonNull(result, n);
 
