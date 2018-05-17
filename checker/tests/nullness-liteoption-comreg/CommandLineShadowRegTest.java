@@ -33,7 +33,7 @@ public class CommandLineShadowRegTest {
     }
 
     @Pure
-    private @Nullable Object m4(Integer a) {
+    private @Nullable Object m4(int a) {
         return a;
     }
 }
