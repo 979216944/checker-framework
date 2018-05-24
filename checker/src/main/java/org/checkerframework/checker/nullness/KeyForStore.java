@@ -15,9 +15,9 @@ public class KeyForStore extends CFAbstractStore<KeyForValue, KeyForStore> {
     }
 
     /**
-     * [Invalidation of Dataflow] When NullnessLite is enabled, canAlias returns false to disallow
-     * aliasing; Note: Since KeyForSubChecker is not inherit from NullnessChecker, modify
-     * KeyForStore is the only way to change the control flow.
+     * [Invalidation of Dataflow] When see -ANullnessLite or -ANullnessLite=inva, canAlias returns
+     * false to disallow aliasing; Note KeyForSubChecker doesn't inherit from NullnessChecke;
+     * Thus, changing KeyForStore is the only way to change the control flow.
      */
     @Override
     public boolean canAlias(FlowExpressions.Receiver a, FlowExpressions.Receiver b) {

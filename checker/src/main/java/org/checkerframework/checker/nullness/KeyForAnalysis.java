@@ -14,7 +14,6 @@ import org.checkerframework.javacutil.Pair;
 public class KeyForAnalysis extends CFAbstractAnalysis<KeyForValue, KeyForStore, KeyForTransfer> {
     // fields inidicates whether nullness_lite is enabled with the following features
     protected boolean NO_ALIASING;
-    protected boolean ALL_KEY_EXIST;
 
     public KeyForAnalysis(
             BaseTypeChecker checker,
@@ -60,11 +59,5 @@ public class KeyForAnalysis extends CFAbstractAnalysis<KeyForValue, KeyForStore,
                                 || checker.getOption("NullnessLite")
                                         .toLowerCase()
                                         .contains("inva"));
-        ALL_KEY_EXIST =
-                checker.hasOption("NullnessLite")
-                        && (checker.getOption("NullnessLite") == null
-                                || checker.getOption("NullnessLite")
-                                        .toLowerCase()
-                                        .contains("mapk"));
     }
 }
