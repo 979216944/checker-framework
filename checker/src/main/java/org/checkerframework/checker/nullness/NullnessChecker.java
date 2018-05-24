@@ -8,8 +8,6 @@ import javax.annotation.processing.SupportedOptions;
 @SupportedOptions({"NullnessLite"})
 public class NullnessChecker extends AbstractNullnessChecker {
 
-    private final String NULLNESS_LITE_STUB = "nullness_lite.astub";
-
     public NullnessChecker() {
         super(true);
     }
@@ -24,15 +22,19 @@ public class NullnessChecker extends AbstractNullnessChecker {
      */
     @Override
     public void initChecker() {
-
         if (this.hasOption("NullnessLite")) {
             Map<String, String> nullness_lite = new HashMap<String, String>();
             nullness_lite.put("suppressWarnings", "uninitialized"); // for 1
             nullness_lite.put("assumeSideEffectFree", null); // for 2
-            nullness_lite.put("stubs", NULLNESS_LITE_STUB); // for 5
             //nullness_lite.put("suppressWarnings", "keyfor");
 
             this.addOptions(nullness_lite);
+        } else {
+            // ignore jdk stub if NullnessLite = OFF
+            Map<String, String> nojdk = new HashMap<String, String>();
+            nojdk.put("ignorejdkastub", null);
+
+            this.addOptions(nojdk);
         }
 
         super.initChecker();
