@@ -1,45 +1,44 @@
+// This test aims to check whether the Nullness_Lite disables
+// the invalidation of dataflow;
+//
+// The Invalidation of dataflow include two aspects:
+// 1). Methods call cannot invalidate the dataflow facts.
+//     In other words, assume all methods call are SideEffectFree.
+// 2). Variables assignement cannot invalidate the dataflow facts
+//     of other variables.
 import org.checkerframework.checker.nullness.qual.Nullable;
-import org.checkerframework.dataflow.qual.Pure;
 
 public class NullnessLiteInvalidDataflow1 {
+    public static @Nullable Node myField;
 
-    public static void main(String[] args) {}
-
-    public @Nullable Node myField;
-
-    public void m1() {
+    // test methods call
+    public static void m1() {
         myField = new Node("123");
 
         if (myField != null) {
-            int result = computeValue();
-            myField.toString(); // Nullness Checker Err here
+            dummyMethod();
+            myField.toString(); // error issued by the Nullness Checker
         }
     }
 
-    public int computeValue() {
-        myField = null;
-        return 0;
-    }
+    public static void dummyMethod() {}
 
-    public void m2() {
-        Node a = new Node("123");
-        Node b = new Node("234");
-        a.next = b;
+    // test aliasing in field
+    public static void m2() {
+        myField = new Node("");
+        Node a = new Node("");
+        a.next = new Node("");
 
-        if (b.str != null) {
-            a.next.str = null;
-            b.str.toString(); // Nullness Checker Err here
-        }
-
-        if (a.next.str != null) {
-            b.str = null;
-            a.next.str.toString(); // Nullness Checker Err here
+        if (a.next != null) {
+            myField.next = null;
+            a.next.toString(); // error issued by the Nullness Checker
         }
     }
 
+    // test aliasing in array
     public void arrayAccess() {
-        Node a = new Node("12345");
-        Node b = new Node("54321");
+        Node a = new Node("");
+        Node b = new Node("");
         Node[] c = new Node[2];
         a.next = b;
         c[0] = a;
@@ -48,24 +47,6 @@ public class NullnessLiteInvalidDataflow1 {
         if (b.str != null) {
             c[1].str = null;
             b.str.toString(); // Nullness Checker Err here
-        }
-
-        if (c[1].str != null) {
-            b.str = null;
-            c[1].str.toString(); // Nullness Checker Err here
-        }
-    }
-
-    public void falsePositive() {
-        foo(new Node("a"));
-    }
-
-    public void foo(Node a) {
-        Node b = new Node("a");
-        a.next = new Node("b");
-        if (a.next != null) {
-            b.next = null;
-            a.next.toString(); // Nullness Checker False Positive
         }
     }
 
@@ -79,7 +60,6 @@ public class NullnessLiteInvalidDataflow1 {
         }
 
         @Override
-        @Pure
         public String toString() {
             if (str != null) {
                 return str;
