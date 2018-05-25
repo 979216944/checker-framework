@@ -6,7 +6,7 @@ import org.checkerframework.framework.test.CheckerFrameworkPerDirectoryTest;
 import org.junit.runners.Parameterized.Parameters;
 
 /**
- * JUnit tests for the Nullness Checker -- testing {@code -ANullnessLite=mapk} command-line
+ * JUnit tests for the Nullness Checker -- testing {@code -ANullnessLite=inva} command-line
  * argument.
  */
 public class NullnessLiteOptInvaTest extends CheckerFrameworkPerDirectoryTest {
