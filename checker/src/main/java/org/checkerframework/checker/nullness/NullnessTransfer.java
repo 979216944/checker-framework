@@ -55,13 +55,13 @@ public class NullnessTransfer
 
     protected final KeyForAnnotatedTypeFactory keyForTypeFactory;
 
-    // Nullness_Lite_Option inidicates whether nullness_lite is enabled
-    protected boolean NULLNESS_LITE_OPTION;
+    // field inidicates whether nullness_lite is enabled assuming all keys exist
+    protected boolean ALL_KEY_EXIST;
 
     public NullnessTransfer(NullnessAnalysis analysis) {
         super(analysis);
 
-        this.NULLNESS_LITE_OPTION = analysis.NULLNESS_LITE_OPTION;
+        ALL_KEY_EXIST = analysis.ALL_KEY_EXIST;
 
         this.keyForTypeFactory =
                 ((BaseTypeChecker) analysis.getTypeFactory().getContext().getChecker())
@@ -234,8 +234,8 @@ public class NullnessTransfer
             String mapName =
                     FlowExpressions.internalReprOf(analysis.getTypeFactory(), receiver).toString();
 
-            // NULLNESS_LITE_OPTIONS assumes that the result of map.get() is always non-null.
-            if (keyForTypeFactory.isKeyForMap(mapName, methodArgs.get(0)) || NULLNESS_LITE_OPTION) {
+            // ALL_KEY_EXIST assumes that the result of map.get() returns non-null.
+            if (keyForTypeFactory.isKeyForMap(mapName, methodArgs.get(0)) || ALL_KEY_EXIST) {
                 makeNonNull(result, n);
 
                 NullnessValue oldResultValue = result.getResultValue();

@@ -13,30 +13,51 @@ public class NullnessChecker extends AbstractNullnessChecker {
     }
 
     /**
-     * NullnessLite option for Nullness Checker 1. [Initialization Checker] disabled as
-     * command-lineoption. 2. [Invalidation of Dataflow] impure methods disallowed as command-line
-     * option. 3. [Invalidation of Dataflow] aliasing disallowed, see method canAlias in
-     * NullnessStore.java. 4. [KeyFor Checker] assume all keys exist in the map, all Map.get(key)
-     * returns nonnull. 5. [Boxing of primitives] all BoxedClass.valueOf(primitiveType) are pure,
+     * NullnessLite option for Nullness Checker: (1) assume all values initialized; (2) assume all
+     * methods side-effect-free, not invalidating dataflow; (3) assume no aliasing, see method
+     * canAlias under NullnessStore.java and KeyForStore.java; (4) assume all keys exist in the map,
+     * all Map.get(key) returns nonnull; (5) assume all BoxedClass.valueOf(primitiveType) are pure,
      * returned Object are equal by ==.
      */
     @Override
     public void initChecker() {
-        if (this.hasOption("NullnessLite")) {
-            Map<String, String> nullness_lite = new HashMap<String, String>();
-            nullness_lite.put("suppressWarnings", "uninitialized"); // for 1
-            nullness_lite.put("assumeSideEffectFree", null); // for 2
-            //nullness_lite.put("suppressWarnings", "keyfor");
+        Map<String, String> nullness_lite = new HashMap<String, String>();
 
-            this.addOptions(nullness_lite);
+        if (this.hasOption("NullnessLite")) {
+            String opts = this.getOption("NullnessLite");
+
+            String oldSWVal = this.getOption("suppressWarnings");
+            String newSWVal = "uninitialized";
+            newSWVal = (oldSWVal == null) ? newSWVal : newSWVal + "," + oldSWVal;
+            if (opts == null) {
+                // 1: assume all values initialized
+                nullness_lite.put("suppressWarnings", newSWVal);
+                // 2: assume all methods side-effect-free
+                nullness_lite.put("assumeSideEffectFree", null);
+            } else {
+                opts = opts.toLowerCase();
+
+                if (opts.contains("init")) {
+                    // 1: assume all values initialized
+                    nullness_lite.put("suppressWarnings", newSWVal);
+                }
+
+                if (opts.contains("inva")) {
+                    // 2: assume all methods side-effect-free
+                    nullness_lite.put("assumeSideEffectFree", null);
+                }
+
+                if (!opts.contains("boxp")) {
+                    // disable 5: boxing of primitives
+                    nullness_lite.put("ignorejdkastub", null);
+                }
+            }
         } else {
             // ignore jdk stub if NullnessLite = OFF
-            Map<String, String> nojdk = new HashMap<String, String>();
-            nojdk.put("ignorejdkastub", null);
-
-            this.addOptions(nojdk);
+            nullness_lite.put("ignorejdkastub", null);
         }
 
+        this.addOptions(nullness_lite);
         super.initChecker();
     }
 }

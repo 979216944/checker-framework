@@ -1,0 +1,7 @@
+import org.checkerframework.checker.nullness.qual.Nullable;
+
+package java.lang.reflect;
+
+public final class Array {
+	public static native int getLength(@Nullable Object array);
+}

@@ -1,0 +1,9 @@
+s directory contains tests for the Nullness Checker, with the
+-ANullnessLite -AsuppressWarnings=method.invocation.invalid -Astubs=issue5.astub flag.
+
+To add a new file to the test suite, just add it to this directory.
+For more details, see
+  ../README
+
+To run the tests, do this:
+  (cd $CHECKERFRAMEWORK && ./gradlew NullnessLiteComRegTest)

@@ -17,15 +17,27 @@ import org.checkerframework.javacutil.Pair;
 public class NullnessAnalysis
         extends CFAbstractAnalysis<NullnessValue, NullnessStore, NullnessTransfer> {
 
-    // Nullness_Lite_Option inidicates whether nullness_lite is enabled
-    protected boolean NULLNESS_LITE_OPTION;
+    // fields inidicates whether nullness_lite is enabled with the following features
+    protected boolean NO_ALIASING;
+    protected boolean ALL_KEY_EXIST;
 
     public NullnessAnalysis(
             BaseTypeChecker checker,
             NullnessAnnotatedTypeFactory factory,
             List<Pair<VariableElement, NullnessValue>> fieldValues) {
         super(checker, factory, fieldValues);
-        NULLNESS_LITE_OPTION = checker.hasOption("NullnessLite");
+        NO_ALIASING =
+                checker.hasOption("NullnessLite")
+                        && (checker.getOption("NullnessLite") == null
+                                || checker.getOption("NullnessLite")
+                                        .toLowerCase()
+                                        .contains("inva"));
+        ALL_KEY_EXIST =
+                checker.hasOption("NullnessLite")
+                        && (checker.getOption("NullnessLite") == null
+                                || checker.getOption("NullnessLite")
+                                        .toLowerCase()
+                                        .contains("mapk"));
         this.transferFunction = createTransferFunction();
     }
 

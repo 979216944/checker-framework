@@ -71,7 +71,7 @@ public class NullnessStore extends InitializationStore<NullnessValue, NullnessSt
      */
     @Override
     public boolean canAlias(FlowExpressions.Receiver a, FlowExpressions.Receiver b) {
-        if (((NullnessAnalysis) analysis).NULLNESS_LITE_OPTION) {
+        if (((NullnessAnalysis) analysis).NO_ALIASING) {
             return false;
         }
         return super.canAlias(a, b);
