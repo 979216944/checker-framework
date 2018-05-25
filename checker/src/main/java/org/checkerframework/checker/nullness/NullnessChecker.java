@@ -1,12 +1,15 @@
 package org.checkerframework.checker.nullness;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.File;
+import java.util.*;
 import javax.annotation.processing.SupportedOptions;
 
 /** A concrete instantiation of {@link AbstractNullnessChecker} using freedom-before-commitment. */
 @SupportedOptions({"NullnessLite"})
 public class NullnessChecker extends AbstractNullnessChecker {
+
+    private static final String NULLNESS_LITE_STUB = "nullness_lite.astub";
+    private static final String[] NULLNESS_LITE_OPTS = {"init", "mapk", "inva", "boxp"};
 
     public NullnessChecker() {
         super(true);
@@ -29,32 +32,36 @@ public class NullnessChecker extends AbstractNullnessChecker {
             String oldSWVal = this.getOption("suppressWarnings");
             String newSWVal = "uninitialized";
             newSWVal = (oldSWVal == null) ? newSWVal : newSWVal + "," + oldSWVal;
+
+            String oldStubs = this.getOption("stubs");
+            String newStubs = NULLNESS_LITE_STUB;
+            newStubs = (oldStubs == null) ? newStubs : oldStubs + ":" + newStubs;
+
             if (opts == null) {
                 // 1: assume all values initialized
                 nullness_lite.put("suppressWarnings", newSWVal);
                 // 2: assume all methods side-effect-free
                 nullness_lite.put("assumeSideEffectFree", null);
+                // 5: assume all BoxedClass.valueOf(primitiveType) are pure
+                nullness_lite.put("stubs", newStubs);
             } else {
-                opts = opts.toLowerCase();
 
-                if (opts.contains("init")) {
+                List<String> optsList = new ArrayList<String>();
+                Collections.addAll(optsList, opts.split(File.pathSeparator));
+
+                if (optsList.contains(NULLNESS_LITE_OPTS[0])) {
                     // 1: assume all values initialized
                     nullness_lite.put("suppressWarnings", newSWVal);
                 }
-
-                if (opts.contains("inva")) {
+                if (optsList.contains(NULLNESS_LITE_OPTS[2])) {
                     // 2: assume all methods side-effect-free
                     nullness_lite.put("assumeSideEffectFree", null);
                 }
-
-                if (!opts.contains("boxp")) {
-                    // disable 5: boxing of primitives
-                    nullness_lite.put("ignorejdkastub", null);
+                if (optsList.contains(NULLNESS_LITE_OPTS[3])) {
+                    // 5: assume all BoxedClass.valueOf(primitiveType) are pure
+                    nullness_lite.put("stubs", newStubs);
                 }
             }
-        } else {
-            // ignore jdk stub if NullnessLite = OFF
-            nullness_lite.put("ignorejdkastub", null);
         }
 
         this.addOptions(nullness_lite);

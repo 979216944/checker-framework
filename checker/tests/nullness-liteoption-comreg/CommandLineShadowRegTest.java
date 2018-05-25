@@ -8,7 +8,7 @@
 // then -Astubs is shadowed by NullnessLite option.
 //
 // If NullnessLite issues errors in m3(),
-// then there a defect in NullnessChecker defining nullness_lite.astub
+// then there a defect in Nullness Checker defining nullness_lite.astub
 
 import java.lang.reflect.Array;
 import org.checkerframework.checker.nullness.qual.Nullable;

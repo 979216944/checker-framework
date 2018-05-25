@@ -1,0 +1,7 @@
+import org.checkerframework.checker.nullness.qual.Nullable;
+
+package java.lang;
+
+public final class String {
+	public @Nullable String replaceAll(String regex, @Nullable String replacement);
+}
