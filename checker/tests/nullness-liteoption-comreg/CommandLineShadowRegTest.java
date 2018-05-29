@@ -1,7 +1,7 @@
 // If NullnessLite issues errors at f, meaning NullnessLite has defects,
 // then this test is meaningless before defects being fixed.
 //
-// If NullnessLite issues errors in m1(),
+// If NullnessLite issues errors in the constructor,
 // then -AsuppressWarnings is shadowed by NullnessLite option.
 //
 // If NullnessLite issues errors in m2(),

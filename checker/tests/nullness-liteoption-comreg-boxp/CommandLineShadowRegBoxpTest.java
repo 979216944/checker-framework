@@ -10,7 +10,7 @@ import org.checkerframework.dataflow.qual.Pure;
  * <p>Possible errors: If NullnessLite issues errors at f, meaning NullnessLite has defects, then
  * this test is meaningless before defects being fixed.
  *
- * <p>If NullnessLite issues errors in m1(), then -Astubs is shadowed by NullnessLite option.
+ * <p>If NullnessLite issues errors in the constructor, then -Astubs is shadowed by NullnessLite option.
  *
  * <p>If NullnessLite issues errors in m2(), then -Astubs is shadowed by NullnessLite option.
  *
