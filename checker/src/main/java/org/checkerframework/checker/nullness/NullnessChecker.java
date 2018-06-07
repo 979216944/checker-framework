@@ -35,7 +35,7 @@ public class NullnessChecker extends AbstractNullnessChecker {
 
             String oldStubs = this.getOption("stubs");
             String newStubs = NULLNESS_LITE_STUB;
-            newStubs = (oldStubs == null) ? newStubs : oldStubs + ":" + newStubs;
+            newStubs = (oldStubs == null) ? newStubs : oldStubs + File.pathSeparator + newStubs;
 
             if (opts == null) {
                 // 1: assume all values initialized
