@@ -794,6 +794,62 @@ assert var != null : "@AssumeAssertion(nullness)";
 \end{itemize}
 
 
+\section{Nullness\_Lite: An Unsound Option of the Nullness Checker for fewer false positives\label{nullness-lite}}
+
+\subsection{Introduction\label{nullness-lite-introduction}}
+
+Nullness\_Lite is a lite option of the Nullness Checker in the Checker Framework
+to detect nullness bugs in java source files. It disables the following features
+of Nullness Checker to obtain more desireable traits. To be specific, the Nullness
+Checker with Nullness\_Lite option enabled will be faster and easier to use by
+delibrately giving up soundness.
+
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Featrue Disabled} & \textbf{Substitute Behavior of the Nullness\_Lite option}\\ \hline
+Initialization Checker & Assume all values (fields \& class variables) initialized\\ \hline
+Map Key Checker & Assume all keys are in the map and \code{Map.get(key)} returns \code{@NonNull}\\ \hline
+Invalidation of dataflow & Assume no aliasing and all methods are \code{@SideEffectFree} \\ \hline
+Boxing of primitives & Assume the boxing of primitives return the same object and \code{BoxedClass.valueOf()} are \code{@Pure}\\ \hline
+\end{tabular}
+
+
+\subsection{Who wants to use Nullness\_Lite option?\label{nullness-lite-who}}
+
+Java developers who would like to get a trustable analysis on their source files,
+but hesitate to spend time running full verification tool such as Nullness Checker.
+They can run the Nullenss\_Lite option instead to get a fast glimpse on their files
+before they upgrade to the Nullness Checker.
+
+
+\subsection{How to use the Nullness\_Lite?\label{nullness-lite-how}}
+
+Please follow the instructions for installation first. To compile the Nullness Checker,
+please follow the instructions in Section \href{https://checkerframework.org/manual/#running}
+{2.2} for information about running a checker.
+
+Users run Nullness\_Lite by passing an extra argument when running Nullness Checker
+from the command line:
+
+\begin{Verbatim}
+  javac -processor nullness -ANullnessLite <MyFile.java>
+\end{Verbatim}
+
+* Notice that the behavior is undefined if \code{-ANullnessLite option} is passed to a
+different checker.
+
+\subsection{More information\label{nullness-lite-more}}
+
+\begin{itemize}
+\item
+See the \href{https://github.com/979216944/checker-framework}{implementation}
+\item
+See the \href{https://github.com/NullnessLiteGroup/junit4}{evaluation on JUnit4}
+\end{itemize}
+
+Refer to the \href{https://github.com/weifanjiang/Nullness_Lite}{complete Nullness\_Lite
+user manual on GitHub} for more details.
+
 
 \section{Other tools for nullness checking\label{nullness-related-work}}
 
