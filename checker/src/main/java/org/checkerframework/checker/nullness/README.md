@@ -34,6 +34,7 @@ See documentation in source files for more details.
 |nullness-liteoption-comreg-boxp/|regression tests of issue 5 for feature 5|
 
 |File Path: checker-framework/checker/src/test/java/tests/| Description |
+|-|-|
 |NullnessLiteOptTest.java|Initialize the spec. test for the Nullness_Lite|
 |NullnessLiteOptInitTest.java|Initialize the spec. test for feature 1|
 |NullnessLiteOptInvaTest.java|Initialize the spec. test for feature 2 & 3|
