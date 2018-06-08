@@ -21,19 +21,23 @@ Features 2 & 3 are both from the [invalidation of the dataflow](https://github.c
 See documentation in source files for more details.
 
 ## Files added for testing
-|File/folder Path|Description|
-|--|--|
-|checker-framework/checker/tests/nullness-liteoption/|spec. tests for the Nullness_Lite|
-|checker-framework/checker/tests/nullness-liteoption-init/|spec. tests for feature 1|
-|checker-framework/checker/tests/nullness-liteoption-mapk/|spec. tests for feature 4|
-|checker-framework/checker/tests/nullness-liteoption-inva/|spec. tests for feature 2 & 3|
-|checker-framework/checker/tests/nullness-liteoption-boxp/|spec. tests for feature 5|
-|checker-framework/checker/tests/nullness-liteoption-comreg/|regression tests of [issue 5](https://github.com/979216944/checker-framework/issues/5)|
-|checker-framework/checker/tests/nullness-liteoption-comreg-boxp/|regression tests of [issue 5](https://github.com/979216944/checker-framework/issues/5) for feature 5|
-|checker-framework/checker/src/test/java/tests/NullnessLiteOptTest.java|Initialize the spec. test for the Nullness_Lite|
-|checker-framework/checker/src/test/java/tests/NullnessLiteOptInitTest.java|Initialize the spec. test for feature 1|
-|checker-framework/checker/src/test/java/tests/NullnessLiteOptInvaTest.java|Initialize the spec. test for feature 2 & 3|
-|checker-framework/checker/src/test/java/tests/NullnessLiteOptMapkTest.java|Initialize the spec. test for feature 4|
-|checker-framework/checker/src/test/java/tests/NullnessLiteOptBoxpTest.java|Initialize the spec. test for feature 5|
-|checker-framework/checker/src/test/java/tests/NullnessLiteComRegTest.java|Initialize the regression test|
-|checker-framework/checker/src/test/java/tests/NullnessLiteComRegBoxpTest.java|Initialize the regression test for feature 5|
+[issue 5](https://github.com/979216944/checker-framework/issues/5)|
+
+|Folder Path: checker-framework/checker/tests/| Description |
+|-|-|
+|nullness-liteoption/|spec. tests for the Nullness_Lite|
+|nullness-liteoption-init/|spec. tests for feature 1|
+|nullness-liteoption-mapk/|spec. tests for feature 4|
+|nullness-liteoption-inva/|spec. tests for feature 2 & 3|
+|nullness-liteoption-boxp/|spec. tests for feature 5|
+|nullness-liteoption-comreg/|regression tests of issue 5|
+|nullness-liteoption-comreg-boxp/|regression tests of issue 5 for feature 5|
+
+|File Path: checker-framework/checker/src/test/java/tests/| Description |
+|NullnessLiteOptTest.java|Initialize the spec. test for the Nullness_Lite|
+|NullnessLiteOptInitTest.java|Initialize the spec. test for feature 1|
+|NullnessLiteOptInvaTest.java|Initialize the spec. test for feature 2 & 3|
+|NullnessLiteOptMapkTest.java|Initialize the spec. test for feature 4|
+|NullnessLiteOptBoxpTest.java|Initialize the spec. test for feature 5|
+|NullnessLiteComRegTest.java|Initialize the regression test of issue 5|
+|NullnessLiteComRegBoxpTest.java|Initialize the regression test pf issue 5 for feature 5|
