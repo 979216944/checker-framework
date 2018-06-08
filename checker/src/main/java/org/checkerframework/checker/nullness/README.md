@@ -7,7 +7,14 @@
    - 3.2. Assume no aliasing
 4. Assume the boxing of primitives return the same object and `BoxedClass.valueOf()` are `@Pure`
 
-The implementation includes an additional command line argument `ANullnessLite` for the Nullness Checker and 4 values `ANullnessLite` option can accept for testing purpose: `init` for feature 1, `mapk` for feature 2, `inva` for feature 3, `boxp` for feature 4.
+The implementation includes an additional command line argument `ANullnessLite` for the Nullness Checker and 4 values `ANullnessLite` option can accept for testing individual feature.
+|Command line argument added|description|
+|--|--|
+|`-ANullnessLite`| all features in the Nullness_Lite is enabled |
+|`-ANullnessLite=init`| feature 1 is enabled |
+|`-ANullnessLite=mapk`|feature 2 is enabled|
+|`-ANullnessLite=inva`|feature 3 is enabled|
+|`-ANullnessLite=boxp`|feature 4 is enabled|
 
 ## Files changed in the Nullness Checker
 |File Name|Changes Description|
