@@ -2,8 +2,9 @@
 ## 4 features in the Nullness_Lite option different from the Nullness Checker
 1. Assume all values (fields & class variables) initialized
 2. Assume all keys are in the map and `Map.get(key)` returns `@NonNull`
-3. 1. Assume all methods are `@SideEffectFree` 
-3. 2. Assume no aliasing
+3. Assume no invalidation of dataflow
+   - 3.1. Assume all methods are `@SideEffectFree` 
+   - 3.2. Assume no aliasing
 4. Assume the boxing of primitives return the same object and `BoxedClass.valueOf()` are `@Pure`
 
 The implementation includes an additional command line argument `ANullnessLite` for the Nullness Checker and 4 values `ANullnessLite` option can accept for testing purpose: `init` for feature 1, `mapk` for feature 2, `inva` for feature 3, `boxp` for feature 4.
