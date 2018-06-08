@@ -27,15 +27,16 @@ The implementation includes an additional command line argument `ANullnessLite` 
 |NullnessStore.java|Method `canAlias` overrided for feature 3.2|
 |KeyForStore.java|Method `canAlias` overrided for feature 3.2|
 |NullnessTransfer.java|Instance variable `ALL_KEY_EXIST` added as a flag and method `visitMethodInvocation` revised for feature 2|
-See documentation in source files for more details.
+
+See the source files for more details.
 
 ## Files added for testing
 [issue 5](https://github.com/979216944/checker-framework/issues/5)|
 
 Test files common path: `checker-framework/checker/src/test/java/tests/`
-Test folders common path: `checker-framework/checker/tests/`
+Tests folders common path: `checker-framework/checker/tests/`
 
-|File Name| Folder | Description |
+|File Name| Folder Name | Description |
 |-|-|-|
 |NullnessLiteOptTest.java| nullness-liteoption/ |Initialize the spec. test for the Nullness_Lite|
 |NullnessLiteOptInitTest.java| nullness-liteoption-init/ |Initialize the spec. test for feature 1|
