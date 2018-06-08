@@ -8,6 +8,7 @@
 4. Assume the boxing of primitives return the same object and `BoxedClass.valueOf()` are `@Pure`
 
 The implementation includes an additional command line argument `ANullnessLite` for the Nullness Checker and 4 values `ANullnessLite` option can accept for testing individual feature.
+
 |Command line argument added|description|
 |--|--|
 |`-ANullnessLite`| all features in the Nullness_Lite is enabled |
