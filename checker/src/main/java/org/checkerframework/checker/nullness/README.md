@@ -31,7 +31,7 @@ The implementation includes an additional command line argument `ANullnessLite` 
 See the source files for more details.
 
 ## Files added for testing
-[issue 5](https://github.com/979216944/checker-framework/issues/5)|
+[issue 5](https://github.com/979216944/checker-framework/issues/5)
 
 Test files common path: `checker-framework/checker/src/test/java/tests/`
 Tests folders common path: `checker-framework/checker/tests/`
